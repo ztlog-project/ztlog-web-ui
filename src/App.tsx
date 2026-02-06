@@ -1,4 +1,4 @@
-import "./Styles.css";
+import "./styles/Styles.css";
 import { Provider as ReduxProvider } from "react-redux";
 import { useStore } from "./store";
 import { BrowserRouter } from "react-router-dom";
