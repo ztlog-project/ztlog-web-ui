@@ -1,5 +1,5 @@
 {
-  "name": "devlog-front",
+  "name": "ztlog-web-ui",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8086",
