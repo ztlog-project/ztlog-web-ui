@@ -24,3 +24,16 @@ yarn-error.log*
 
 .build_text
 /src/Styles.css
+
+# environment variables
+.env
+.env.production
+
+# logs
+/logs
+
+# build info
+tsconfig.tsbuildinfo
+
+# claude
+.claude/
