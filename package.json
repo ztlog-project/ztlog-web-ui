@@ -2,6 +2,7 @@
   "name": "devlog-front",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8086",
   "dependencies": {
     "@fontsource/material-icons": "^4.5.4",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

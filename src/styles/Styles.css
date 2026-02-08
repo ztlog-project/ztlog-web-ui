@@ -698,9 +698,14 @@ progress {
   min-height: 100%;
   padding-bottom: 120px;
 }
+.layout-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .wrapper {
-  /* height: 100%; */
-  /* min-height: 1000px; */
+  flex: 1;
 }
 
 .content-wrapper {
@@ -2646,7 +2651,7 @@ textarea.form-control-lg {
   -moz-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 .form-check-input[type="radio"] {
@@ -12950,4 +12955,50 @@ header.masthead .post-heading .meta a {
   top: 23px;
   right: 24px;
   margin: 0;
+}
+
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e9ecef;
+  border-top: 4px solid #0085a1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #0085a1;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-back:hover {
+  color: #005f73;
+}
+
+.tag-link {
+  color: #0085a1;
+  text-decoration: none;
+  margin-right: 6px;
+}
+
+.tag-link:hover {
+  color: #005f73;
+  text-decoration: underline;
 }

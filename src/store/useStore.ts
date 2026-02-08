@@ -4,7 +4,7 @@ import { rootReducer } from "./rootReducer";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-const useLogger = process.env.NODE_ENV != "production";
+const useLogger = process.env.NODE_ENV !== "production";
 
 const initailizeStore = () => {
   const middleware: any[] = [thunk];

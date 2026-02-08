@@ -31,7 +31,7 @@ export default function SideBar() {
               data-tooltip-text="Suwon, Republic of Korea"
             >
               <FontAwesomeIcon icon={faLocationDot} />
-              <label htmlFor="location"> Republic of Korea</label>
+              <span> Republic of Korea</span>
             </Link>
           </li>
           <li>
@@ -42,7 +42,7 @@ export default function SideBar() {
               data-tooltip-text="chldpwl5620@gmail.com"
             >
               <FontAwesomeIcon icon={faEnvelope} />
-              <label htmlFor="envelope"> Email</label>
+              <span> Email</span>
             </Link>
           </li>
           <li>
@@ -53,18 +53,18 @@ export default function SideBar() {
               data-tooltip-text="github.com/zoetrope56"
             >
               <FontAwesomeIcon icon={faGithub} />
-              <label htmlFor="github"> GitHub</label>
+              <span> GitHub</span>
             </Link>
           </li>
           <li>
             <Link
               to="https://twitter.com/tromm_dev"
               target="_blank"
-              id="location"
+              id="twitter"
               data-tooltip-text="twitter.com/tromm_dev"
             >
               <FontAwesomeIcon icon={faTwitter} />
-              <label htmlFor="location"> Twitter</label>
+              <span> Twitter</span>
             </Link>
           </li>
         </ul>

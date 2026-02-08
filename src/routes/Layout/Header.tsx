@@ -7,14 +7,11 @@ import { useState, useEffect } from "react";
 export default function Header() {
   // scroll fixed
   const [isFixed, setFixed] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const headerFixed = () => {
     const currentScrollPosition = window.pageYOffset;
     if (currentScrollPosition > 0) {
-      setScrollY(window.pageYOffset);
       setFixed(true);
     } else {
-      setScrollY(window.pageYOffset);
       setFixed(false);
     }
   };
