@@ -59,8 +59,8 @@ export default function ContentsList() {
               </Link>
               <div className="post-meta">
                 <p>
-                  <FontAwesomeIcon icon={faTags} /> {e.tags.map(function(tag: any) {
-                    return <Link to={`/tags?tagNo=${tag.tagNo}&tagName=${tag.tagName}`} key={tag.tagNo} className="tag-link">{tag.tagName}</Link>
+                  <FontAwesomeIcon icon={faTags} /> {e.tags.map(function(tag: any, idx: number) {
+                    return <span key={tag.tagNo}><Link to={`/tags?tagNo=${tag.tagNo}&tagName=${tag.tagName}`} className="tag-link">{tag.tagName}</Link>{idx < e.tags.length - 1 && ', '}</span>
                   })}
                 </p>
                 <p>

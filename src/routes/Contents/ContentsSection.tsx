@@ -45,8 +45,8 @@ export default function ContentsSection() {
         </div>
         <div className="post-footer">
           <p className="meta">
-            <FontAwesomeIcon icon={faTags} /> {post.tags.map(function (el: any) {
-              return <Link to={`/tags?tagNo=${el.tagNo}&tagName=${el.tagName}`} key={el.tagNo} className="tag-link">{el.tagName}</Link>
+            <FontAwesomeIcon icon={faTags} /> {post.tags.map(function (el: any, idx: number) {
+              return <span key={el.tagNo}><Link to={`/tags?tagNo=${el.tagNo}&tagName=${el.tagName}`} className="tag-link">{el.tagName}</Link>{idx < post.tags.length - 1 && ', '}</span>
             })}
           </p>
           <p className="meta">

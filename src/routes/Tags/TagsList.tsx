@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTags, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import Pagination from "react-js-pagination";
 import axios from "axios";
@@ -74,18 +74,13 @@ export default function TagList() {
     if (selectedTag) {
         return (
             <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
-                <div style={{ padding: "0 0 20px" }}>
-                    <button onClick={handleBack} className="btn-back">
-                        <FontAwesomeIcon icon={faArrowLeft} /> 태그 목록
-                    </button>
-                    <h4 style={{ marginTop: "15px" }}>
-                        <FontAwesomeIcon icon={faTags} /> {selectedTag.tagName}
-                        <span style={{ fontSize: "14px", color: "#868e96", marginLeft: "8px" }}>
-                            ({total}건)
-                        </span>
-                    </h4>
-                    <hr className="my-4" />
+                <div className="tag-breadcrumb">
+                    <span className="breadcrumb-link" onClick={handleBack}>Tags</span>
+                    <span className="breadcrumb-sep">/</span>
+                    <span className="breadcrumb-current">{selectedTag.tagName}</span>
+                    <span className="breadcrumb-count">{total}</span>
                 </div>
+                <hr className="my-4" />
                 <div>
                     {loading ? (
                         <div className="spinner-wrap">
@@ -100,8 +95,8 @@ export default function TagList() {
                                 </Link>
                                 <div className="post-meta">
                                     <p>
-                                        <FontAwesomeIcon icon={faTags} /> {e.tags.map(function(tag: any) {
-                                            return tag.tagName + ' '
+                                        <FontAwesomeIcon icon={faTags} /> {e.tags.map(function(tag: any, idx: number) {
+                                            return <span key={tag.tagNo}><Link to={`/tags?tagNo=${tag.tagNo}&tagName=${tag.tagName}`} className="tag-link">{tag.tagName}</Link>{idx < e.tags.length - 1 && ', '}</span>
                                         })}
                                     </p>
                                     <p>
