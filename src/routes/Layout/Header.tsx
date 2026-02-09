@@ -1,10 +1,14 @@
 import logo from "pages/images/logo.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
+import { useTheme } from "contexts";
 
 export default function Header() {
+  // theme
+  const { theme, toggleTheme } = useTheme();
+
   // scroll fixed
   const [isFixed, setFixed] = useState(false);
   const headerFixed = () => {
@@ -87,6 +91,16 @@ export default function Header() {
                   <input type="text" placeholder="검색어 입력..." />
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </div>
+              </li>
+              <li className="nav-item">
+                <button
+                  onClick={toggleTheme}
+                  className="nav-link px-lg-3 py-3 py-lg-4 theme-toggle"
+                  aria-label="Toggle dark mode"
+                  style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
+                >
+                  <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
+                </button>
               </li>
             </ul>
           </div>

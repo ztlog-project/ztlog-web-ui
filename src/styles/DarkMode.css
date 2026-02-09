@@ -1,0 +1,342 @@
+/* Dark Mode CSS Variable Overrides */
+html[data-theme="dark"] {
+  /* Core colors - Invert light/dark */
+  --bs-body-bg: #1a1a1a;
+  --bs-body-color: #e4e4e4;
+  --bs-body-bg-rgb: 26, 26, 26;
+  --bs-body-color-rgb: 228, 228, 228;
+
+  /* Gray scale - Invert for dark mode */
+  --bs-gray-100: #2d2d2d;
+  --bs-gray-200: #3a3a3a;
+  --bs-gray-300: #4a4a4a;
+  --bs-gray-400: #5a5a5a;
+  --bs-gray-500: #6a6a6a;
+  --bs-gray-600: #9a9a9a;
+  --bs-gray-700: #b0b0b0;
+  --bs-gray-800: #d0d0d0;
+  --bs-gray-900: #e4e4e4;
+
+  /* Light/Dark swap */
+  --bs-light: #2d2d2d;
+  --bs-dark: #e4e4e4;
+  --bs-light-rgb: 45, 45, 45;
+  --bs-dark-rgb: 228, 228, 228;
+
+  /* Links - slightly brighter primary for contrast */
+  --bs-link-color: #dfe8f1;
+  --bs-link-hover-color: #6bb0ff;
+
+  /* Border colors */
+  --bs-border-color: #4a4a4a;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+}
+
+/* Smooth transition for theme changes */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  width: auto;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Dark mode specific adjustments for search input */
+html[data-theme="dark"] .search input {
+  background-color: var(--bs-gray-100);
+  color: var(--bs-body-color);
+  border-color: var(--bs-gray-300);
+}
+
+html[data-theme="dark"] .search input::placeholder {
+  color: var(--bs-gray-600);
+}
+
+/* Navbar dark mode styling */
+html[data-theme="dark"] .navbar-light {
+  background-color: var(--bs-body-bg);
+}
+
+html[data-theme="dark"] .navbar-brand,
+html[data-theme="dark"] .nav-link {
+  color: var(--bs-body-color) !important;
+}
+
+html[data-theme="dark"] .nav-link:hover,
+html[data-theme="dark"] .nav-link:focus {
+  color: var(--bs-link-color) !important;
+}
+
+html[data-theme="dark"] .navbar-toggler {
+  border-color: var(--bs-gray-400);
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(228, 228, 228, 0.25);
+}
+
+/* Fixed navbar dark mode */
+html[data-theme="dark"] #mainNav.is-fixed {
+  background-color: rgba(26, 26, 26, 0.95);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] #mainNav.is-fixed .navbar-brand,
+html[data-theme="dark"] #mainNav.is-fixed .nav-link {
+  color: var(--bs-body-color) !important;
+}
+
+/* Header default background - non-fixed state */
+html[data-theme="dark"] #mainNav:not(.is-fixed) {
+  background-color: var(--bs-body-bg);
+}
+
+/* Footer dark mode */
+html[data-theme="dark"] footer {
+  background-color: var(--bs-gray-200);
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] footer .text-muted {
+  color: var(--bs-gray-600) !important;
+}
+
+/* SideBar dark mode */
+html[data-theme="dark"] .sidebar {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .author_profile {
+  /* background-color: var(--bs-gray-100); */
+  border-color: var(--bs-gray-300);
+}
+
+html[data-theme="dark"] .author__name label {
+  background-color: var(--bs-gray-200);
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .author__urls a {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .author__urls a:hover {
+  color: #dfe8f1;
+}
+
+/* ContentsList dark mode */
+html[data-theme="dark"] .post-preview {
+  border-color: var(--bs-gray-400);
+}
+
+html[data-theme="dark"] .post-title {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .post-subtitle {
+  color: var(--bs-gray-700);
+}
+
+html[data-theme="dark"] .post-meta {
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .post-meta a {
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .post-meta a:hover {
+  color: #dfe8f1;
+}
+
+html[data-theme="dark"] .tag-link {
+  color: var(--bs-gray-600);
+  border-color: var(--bs-link-color);
+}
+
+html[data-theme="dark"] .tag-link:hover {
+  /* background-color: var(--bs-link-color); */
+  color: #dfe8f1;
+}
+
+html[data-theme="dark"] hr {
+  border-color: var(--bs-gray-400);
+  opacity: 0.5;
+}
+
+/* Pagination dark mode */
+html[data-theme="dark"] .pagination {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .pagination li a {
+  /* background-color: var(--bs-gray-100); */
+  border-color: var(--bs-gray-400);
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .pagination li a:hover {
+  /* background-color: var(--bs-gray-200); */
+  border-color: var(--bs-gray-500);
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .pagination li.active a {
+  /* background-color: var(--bs-link-color); */
+  border-color: #dfe8f1;
+  color: white;
+}
+
+html[data-theme="dark"] .pagination li.disabled a {
+  /* background-color: var(--bs-gray-100); */
+  border-color: var(--bs-gray-300);
+  color: var(--bs-gray-500);
+}
+
+/* Spinner dark mode */
+html[data-theme="dark"] .spinner {
+  /* border-color: var(--bs-gray-400); */
+  border-top-color: #dfe8f1;
+}
+
+/* TagsList dark mode */
+html[data-theme="dark"] .tag {
+  /* background-color: var(--bs-gray-200); */
+  color: var(--bs-body-color);
+  border-color: var(--bs-gray-400);
+  box-shadow: 2px 2px 5px 2px var(--bs-gray-100);
+}
+
+html[data-theme="dark"] .tag span {
+  /* background-color: var(--bs-gray-200); */
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .tag:hover {
+  background-color: var(--bs-gray-500);
+  border-color: var(--bs-gray-500);
+}
+
+html[data-theme="dark"] .tag-breadcrumb {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .breadcrumb-link {
+  color: #dfe8f1;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .breadcrumb-link:hover {
+  color: var(--bs-link-hover-color);
+}
+
+html[data-theme="dark"] .breadcrumb-sep {
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .breadcrumb-current {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .breadcrumb-count {
+  background-color: var(--bs-gray-200);
+  /* color: var(--bs-gray-600); */
+}
+
+/* ContentsSection (Article) dark mode */
+html[data-theme="dark"] .article {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .post-header h1 {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .content-box {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .post-footer {
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .post-footer .meta {
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .post-footer .meta a {
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .post-footer .meta a:hover {
+  color: #dfe8f1;
+}
+
+/* Markdown Preview dark mode */
+html[data-theme="dark"] .wmde-markdown {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown pre {
+  background-color: var(--bs-gray-200) !important;
+  border-color: var(--bs-gray-400) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown code {
+  background-color: var(--bs-gray-200) !important;
+  color: var(--bs-body-color) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown blockquote {
+  border-left-color: var(--bs-gray-400) !important;
+  color: var(--bs-gray-700) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown a {
+  color: var(--bs-link-color) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown a:hover {
+  color: var(--bs-link-hover-color) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown table {
+  border-color: var(--bs-gray-400) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown th,
+html[data-theme="dark"] .wmde-markdown td {
+  border-color: var(--bs-gray-400) !important;
+}
+
+html[data-theme="dark"] .wmde-markdown th {
+  background-color: var(--bs-gray-200) !important;
+}
+
+/* Giscus (Comments) dark mode */
+html[data-theme="dark"] .giscus,
+html[data-theme="dark"] .giscus-frame {
+  color-scheme: dark;
+}

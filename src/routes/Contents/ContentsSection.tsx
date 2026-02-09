@@ -8,8 +8,10 @@ import axios from "axios";
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import Comments from "./Comments";
 import dayjs from 'dayjs';
+import { useTheme } from "contexts";
 
 export default function ContentsSection() {
+  const { theme } = useTheme();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const [post, setPost] = useState({
@@ -40,7 +42,7 @@ export default function ContentsSection() {
 
         <div className="content-box">
           <br />
-          <MarkdownPreview source={post.body} wrapperElement={{ "data-color-mode": "light" }} />
+          <MarkdownPreview source={post.body} wrapperElement={{ "data-color-mode": theme }} />
           <br />
         </div>
         <div className="post-footer">
