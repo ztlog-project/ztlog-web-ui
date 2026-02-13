@@ -48,6 +48,8 @@ body * {
   width: auto;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
+  padding-top: 1rem !important;
+  position: fixed;
 }
 
 .theme-toggle:hover {

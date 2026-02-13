@@ -129,6 +129,12 @@ export default function TagList() {
 
     return (
         <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
+            <div className="tag-breadcrumb">
+                <span className="breadcrumb-link" onClick={handleBack}>Tags</span>
+                <span className="breadcrumb-sep">/</span>
+                <span className="breadcrumb-current">All</span>
+            </div>
+            <hr className="my-4" />
             <div className="post-meta">
             {tags && tags.map((e) => (
                 <span key={e.tagNo} className="tag" onClick={() => handleTagClick(e)} style={{ cursor: "pointer" }}>

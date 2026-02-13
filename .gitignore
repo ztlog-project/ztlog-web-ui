@@ -37,3 +37,4 @@ tsconfig.tsbuildinfo
 
 # claude
 .claude/
+CLAUDE.md

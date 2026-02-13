@@ -12694,7 +12694,7 @@ header.masthead .post-heading .meta a {
 @media (min-width: 64em) {
   .author__avatar img {
     padding: 5px;
-    border: 1px solid #f2f3f3;
+    /* border: 1px solid #f2f3f3; */
   }
 }
 
@@ -12859,7 +12859,7 @@ header.masthead .post-heading .meta a {
 
 @media (min-width: 64em) {
   .author__urls:before {
-    /* display: none */
+    display: none;
   }
 }
 
@@ -12878,7 +12878,7 @@ header.masthead .post-heading .meta a {
 
 @media (min-width: 64em) {
   .author__urls:after {
-    /* display: none */
+    display: none;
   }
 }
 
