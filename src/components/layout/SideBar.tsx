@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -10,7 +11,7 @@ export default function SideBar() {
     <aside className="sidebar col-lg-2 col-xl-2">
       <div className="author_profile">
         <div className="author__avatar">
-          <img src="/images/profile.png" alt="profile" />
+          <Image src="/images/profile.png" alt="profile" width={120} height={120} />
         </div>
         <div className="author__content">
           <div className="author__name" style={{ margin: 'auto' }}>

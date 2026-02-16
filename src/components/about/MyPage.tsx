@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
+import Image from 'next/image';
 
 export default function MyPage() {
   return (
@@ -8,7 +8,7 @@ export default function MyPage() {
           className="col-md-6 col-lg-7 col-xl-7"
           style={{ margin: 'auto 0px', padding: '30px' }}
         >
-          <img src="/images/photo.png" alt="photo" style={{ width: '100%', borderRadius: '60px' }} />
+          <Image src="/images/photo.png" alt="photo" width={480} height={480} style={{ width: '100%', height: 'auto', borderRadius: '60px' }} />
         </div>
         <div style={{ margin: 'auto 0px', padding: '30px' }}>
           <div className="profile">

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
@@ -10,15 +11,6 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
 
   const [isFixed, setFixed] = useState(false);
-  const headerFixed = () => {
-    const currentScrollPosition = window.pageYOffset;
-    if (currentScrollPosition > 0) {
-      setFixed(true);
-    } else {
-      setFixed(false);
-    }
-  };
-
   const [isAriaExpanded, setAriaExpanded] = useState(false);
   const [isShow, setShow] = useState(false);
 
@@ -28,14 +20,14 @@ export default function Header() {
   };
 
   useEffect(() => {
-    const scrollListener = () => {
-      window.addEventListener('scroll', headerFixed);
+    const headerFixed = () => {
+      setFixed(window.pageYOffset > 0);
     };
-    scrollListener();
+    window.addEventListener('scroll', headerFixed);
     return () => {
       window.removeEventListener('scroll', headerFixed);
     };
-  });
+  }, []);
 
   return (
     <header>
@@ -49,7 +41,7 @@ export default function Header() {
       >
         <div className="container px-4 px-lg-5">
           <Link href="/" className="navbar-brand">
-            <img src="/images/logo.png" alt="logo" />
+            <Image src="/images/logo.png" alt="logo" width={40} height={40} />
           </Link>
           <button
             className="navbar-toggler"
