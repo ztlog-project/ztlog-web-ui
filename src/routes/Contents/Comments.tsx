@@ -31,3 +31,24 @@ export default function Comments() {
 
   return <section ref={ref} />;
 }
+
+// export default function Comments() {
+//     return (
+//         <Giscus
+//         id='comments'
+//         repo="zoetrope56/devlog-comments"
+//         repoId="R_kgDOKnxXWg"
+//         category="General"
+//         categoryId="DIC_kwDOKnxXWs4Camnw"
+//         mapping="pathname"
+//         term="Welcome to @giscus/react component!"
+//         strict="0"
+//         reactionsEnabled="1"
+//         emitMetadata="0"
+//         inputPosition="bottom"
+//         theme="light"
+//         lang="ko"
+//         loading='lazy'
+//         />
+//     );
+// }
