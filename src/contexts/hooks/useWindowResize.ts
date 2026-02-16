@@ -8,7 +8,7 @@ export const useWindowResize = () => {
     setWitdhHeight((notUsed) => [window.innerWidth, window.innerHeight]);
   }, []);
 
-  useEventListener(window, "resize", () => {
+  useEventListener(typeof window !== 'undefined' ? window : null, "resize", () => {
     setWitdhHeight((notUsed) => [window.innerWidth, window.innerHeight]);
   });
 
