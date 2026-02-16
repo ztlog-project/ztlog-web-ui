@@ -186,6 +186,11 @@ html[data-theme="dark"] hr {
 }
 
 /* Pagination dark mode */
+
+html[data-theme="dark"] ul.pagination li {
+  border-color: var(--bs-gray-200);
+}
+
 html[data-theme="dark"] .pagination {
   color: var(--bs-body-color);
 }
@@ -211,7 +216,7 @@ html[data-theme="dark"] .pagination li.active a {
 html[data-theme="dark"] .pagination li.disabled a {
   /* background-color: var(--bs-gray-100); */
   border-color: var(--bs-gray-300);
-  color: var(--bs-gray-500);
+  /* color: var(--bs-gray-500); */
 }
 
 /* Spinner dark mode */
