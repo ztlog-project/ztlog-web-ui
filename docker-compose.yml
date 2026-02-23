@@ -1,0 +1,12 @@
+services:
+  ztlog-web-ui:
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/ztlog-web-ui:latest
+    container_name: ztlog-web-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=${BACKEND_URL:-http://host.docker.internal:8086}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
