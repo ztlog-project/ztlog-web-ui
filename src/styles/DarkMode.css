@@ -60,14 +60,26 @@ body * {
   transform: scale(0.95);
 }
 
-/* Dark mode specific adjustments for search input */
-html[data-theme="dark"] .search input {
+/* Dark mode specific adjustments for search */
+html[data-theme="dark"] .search-box {
   background-color: var(--bs-gray-100);
-  color: var(--bs-body-color);
   border-color: var(--bs-gray-300);
 }
 
-html[data-theme="dark"] .search input::placeholder {
+html[data-theme="dark"] .search-box select {
+  color: var(--bs-body-color);
+  border-right-color: var(--bs-gray-400);
+}
+
+html[data-theme="dark"] .search-box input {
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .search-box input::placeholder {
+  color: var(--bs-gray-500);
+}
+
+html[data-theme="dark"] .search-box svg {
   color: var(--bs-gray-600);
 }
 

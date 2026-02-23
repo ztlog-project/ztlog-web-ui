@@ -6,13 +6,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faBars, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'contexts';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
+  const router = useRouter();
 
   const [isFixed, setFixed] = useState(false);
   const [isAriaExpanded, setAriaExpanded] = useState(false);
   const [isShow, setShow] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [searchType, setSearchType] = useState('TITLE_CONTENT');
+
+  const handleSearch = () => {
+    const q = searchInput.trim();
+    if (!q) return;
+    router.push(`/search?type=${searchType}&param=${encodeURIComponent(q)}`);
+    setSearchInput('');
+  };
 
   const menuCollapsed = () => {
     setAriaExpanded(!isAriaExpanded);
@@ -76,8 +87,25 @@ export default function Header() {
               </li>
               <li className="nav-item">
                 <div className="search px-lg-3 py-3 py-lg-3">
-                  <input type="text" placeholder="검색어 입력..." />
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  <div className="search-box">
+                    <select
+                      value={searchType}
+                      onChange={(e) => setSearchType(e.target.value)}
+                    >
+                      <option value="TITLE_CONTENT">제목+내용</option>
+                      <option value="TITLE">제목</option>
+                      <option value="CONTENT">내용</option>
+                      <option value="TAG">태그</option>
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="검색어 입력..."
+                      value={searchInput}
+                      onChange={(e) => setSearchInput(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                    />
+                    <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearch} />
+                  </div>
                 </div>
               </li>
               <li className="nav-item">
