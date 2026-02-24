@@ -63,16 +63,17 @@ jobs:
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: zoetrope56
+          username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           source: docker-compose.yml
           target: /home/app/ztlog-web-ui
+          debug: true
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: zoetrope56
+          username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/app/ztlog-web-ui
