@@ -59,6 +59,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare deploy directory
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo mkdir -p /home/web/ztlog-web-ui
+            sudo chown -R ec2-user:ec2-user /home/web/ztlog-web-ui
+
       - name: Copy docker-compose.yml to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -75,8 +85,6 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo mkdir -p /home/web/ztlog-web-ui
-            sudo chown -R ec2-user:ec2-user /home/web/ztlog-web-ui
             cd /home/web/ztlog-web-ui
             export GITHUB_REPOSITORY_OWNER=${{ github.repository_owner }}
             docker compose pull
