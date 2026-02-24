@@ -6,25 +6,11 @@ on:
       - main
 
 env:
-  DOCKER_IMAGE_NAME: ztlog-web-ui
-  CONTAINER_NAME: ztlog-web-ui
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ztlog-web-ui
 
 jobs:
   build-and-push:
-    name: Checkout code
-    uses: actions/checkout@v4
-    
-    name: Set environment variables
-      run: |
-      if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-      echo "ENV=prd" >> $GITHUB_ENV
-      echo "SERVER_PORT=8088" >> $GITHUB_ENV
-      echo "DOCKER_TAG=latest" >> $GITHUB_ENV
-      else
-            echo "ENV=dev" >> $GITHUB_ENV
-            echo "SERVER_PORT=9088" >> $GITHUB_ENV
-            echo "DOCKER_TAG=dev" >> $GITHUB_ENV
-          fi
     name: Build & Push Docker Image
     runs-on: ubuntu-latest
     permissions:
@@ -46,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
             type=sha,prefix=sha-
@@ -80,7 +66,7 @@ jobs:
           username: zoetrope56
           key: ${{ secrets.EC2_SSH_KEY }}
           source: docker-compose.yml
-          target: ${{ secrets.DEPLOY_PATH }}
+          target: /home/app/ztlog-web-ui
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -89,9 +75,9 @@ jobs:
           username: zoetrope56
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ${{ secrets.DEPLOY_PATH }}
+            cd /home/app/ztlog-web-ui
             export GITHUB_REPOSITORY_OWNER=${{ github.repository_owner }}
             docker compose pull
             docker compose up -d --remove-orphans
             docker image prune -f
-            echo "✅ Deployment complete: $(date)"
+            echo "Deployment complete: $(date)"
