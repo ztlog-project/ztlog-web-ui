@@ -1,6 +1,6 @@
 services:
   ztlog-web-ui:
-    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/ztlog-web-ui:latest
+    image: ghcr.io/zoetrope56/ztlog-web-ui:latest
     container_name: ztlog-web-ui
     ports:
       - "3000:3000"
