@@ -82,7 +82,7 @@ jobs:
           script: |
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             cd /home/ec2-user/web/ztlog-web-ui
-            docker compose pull
-            docker compose up -d --remove-orphans
+            docker-compose pull
+            docker-compose up -d --remove-orphans
             docker image prune -f
             echo "PRD Deployment complete: $(date)"
