@@ -1,7 +1,7 @@
 services:
-  ztlog-web-ui:
+  ztlog-web-ui-prd:
     image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/ztlog-web-ui:latest
-    container_name: ztlog-web-ui
+    container_name: ztlog-web-ui-prd
     ports:
       - "3000:3000"
     environment:
