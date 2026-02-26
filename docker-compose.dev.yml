@@ -6,7 +6,7 @@ services:
       - "3001:3000"
     environment:
       - NODE_ENV=production
-      - BACKEND_URL=${BACKEND_URL:-http://host.docker.internal:8087}
+      - BACKEND_URL=${BACKEND_URL:-http://host.docker.internal:9088}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
