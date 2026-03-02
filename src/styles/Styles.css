@@ -13068,3 +13068,8 @@ header.masthead .post-heading .meta a {
 .tag-link:hover {
   color: #dfe8f1;
 }
+
+.sidebar-tag:hover {
+  color: var(--bs-body-color) !important;
+  text-decoration: none !important;
+}

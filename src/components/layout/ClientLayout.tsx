@@ -5,6 +5,7 @@ import Footer from './Footer';
 
 const Header = dynamic(() => import('./Header'), { ssr: false });
 const SideBar = dynamic(() => import('./SideBar'), { ssr: false });
+const RightSideBar = dynamic(() => import('./RightSideBar'), { ssr: false });
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
