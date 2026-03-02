@@ -13,16 +13,6 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 export default function ContentsList() {
-  const listWraper = {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    minHeight: 'calc(100vh - var(--header-height) - var(--footer-height))',
-  };
-
-  const prevewWraper = {
-    flex: 1,
-  };
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = Number(searchParams.get('page') || '1');
@@ -57,14 +47,14 @@ export default function ContentsList() {
   };
 
   return (
-    <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
-      <div style={prevewWraper}>
+    <div className="col-md-10 col-lg-8 col-xl-7 list-section">
+      <div className="list-content">
         {ctnt && ctnt.length > 0 ? (
           ctnt.map((e) => (
             <div key={e.ctntNo} className="post-preview">
               <Link href={`/contents/${e.ctntNo}`}>
                 <h2 className="post-title">{e.title}</h2>
-                <h3 className="post-subtitle">{e.subTitle}</h3>
+                <h3 className="post-subtitle">{e.subTitle} . . .</h3>
               </Link>
               <div className="post-meta">
                 <p>
@@ -77,7 +67,7 @@ export default function ContentsList() {
                       >
                         {e.category.cateNm}
                       </Link>
-                      <span style={{ marginRight: '0.75rem' }} />
+                      <span className="me-2" />
                     </>
                   )}
                   {e.tags && e.tags.length > 0 && (

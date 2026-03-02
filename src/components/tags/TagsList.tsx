@@ -12,13 +12,6 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 export default function TagList() {
-  const listWraper = {
-    padding: '50px',
-    display: 'flex',
-    flexDirection: 'column' as const,
-    minHeight: 'calc(100vh - var(--header-height) - var(--footer-height))',
-  };
-
   const [tags, setTags] = useState<any[]>([]);
   const [selectedTag, setSelectedTag] = useState<any>(null);
   const [ctnt, setCtnt] = useState<any[]>([]);
@@ -79,7 +72,7 @@ export default function TagList() {
 
   if (selectedTag) {
     return (
-      <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
+      <div className="col-md-10 col-lg-8 col-xl-7 list-section list-section-padded">
         <div className="tag-breadcrumb">
           <span className="breadcrumb-link" onClick={handleBack}>
             Tags
@@ -89,7 +82,7 @@ export default function TagList() {
           <span className="breadcrumb-count">{total}</span>
         </div>
         <hr className="my-4" />
-        <div style={{ flex: 1 }}>
+        <div className="list-content">
           {loading ? (
             <div className="spinner-wrap">
               <div className="spinner" />
@@ -99,7 +92,7 @@ export default function TagList() {
               <div key={e.ctntNo} className="post-preview">
                 <Link href={`/contents/${e.ctntNo}`}>
                   <h2 className="post-title">{e.title}</h2>
-                  <h3 className="post-subtitle">{e.subTitle}</h3>
+                  <h3 className="post-subtitle">{e.subTitle} . . .</h3>
                 </Link>
                 <div className="post-meta">
                   <p>
@@ -147,7 +140,7 @@ export default function TagList() {
   }
 
   return (
-    <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
+    <div className="col-md-10 col-lg-8 col-xl-7 list-section list-section-padded">
       <div className="tag-breadcrumb">
         <span className="breadcrumb-link" onClick={handleBack}>
           Tags
@@ -163,8 +156,7 @@ export default function TagList() {
               key={e.tagNo}
               className="tag"
               onClick={() => handleTagClick(e)}
-              style={{ cursor: 'pointer' }}
-            >
+                          >
               {e.tagName} <span>{e.count}</span>
             </span>
           ))}

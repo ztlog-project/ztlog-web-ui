@@ -720,6 +720,33 @@ progress {
   min-height: ;
 }
 
+/* List page layout */
+.list-section {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.list-section-padded {
+  padding: 50px;
+}
+
+.list-content {
+  flex: 1;
+}
+
+.category-item {
+  margin-bottom: 0.5rem;
+}
+
+.sub-categories {
+  padding-left: 1.5rem;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .container,
 .container-fluid,
 .container-xxl,
@@ -12113,6 +12140,7 @@ blockquote {
   line-height: 25px;
   padding: 5px 15px;
   position: relative;
+  cursor: pointer;
   margin-right: 10px;
   margin-bottom: 10px;
   border-radius: 100px;

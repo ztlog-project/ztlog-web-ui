@@ -12,13 +12,6 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 export default function CategoriesList() {
-  const listWraper = {
-    padding: '50px',
-    display: 'flex',
-    flexDirection: 'column' as const,
-    minHeight: 'calc(100vh - var(--header-height) - var(--footer-height))',
-  };
-
   const [categories, setCategories] = useState<any[]>([]);
   const [expanded, setExpanded] = useState<Set<number>>(new Set());
 
@@ -90,7 +83,7 @@ export default function CategoriesList() {
 
   if (selectedCategory) {
     return (
-      <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
+      <div className="col-md-10 col-lg-8 col-xl-7 list-section list-section-padded">
         <div className="tag-breadcrumb">
           <span className="breadcrumb-link" onClick={handleBack}>
             HOME
@@ -100,7 +93,7 @@ export default function CategoriesList() {
           <span className="breadcrumb-count">{total}</span>
         </div>
         <hr className="my-4" />
-        <div style={{ flex: 1 }}>
+        <div className="list-content">
           {loading ? (
             <div className="spinner-wrap">
               <div className="spinner" />
@@ -110,7 +103,7 @@ export default function CategoriesList() {
               <div key={e.ctntNo} className="post-preview">
                 <Link href={`/contents/${e.ctntNo}`}>
                   <h2 className="post-title">{e.title}</h2>
-                  <h3 className="post-subtitle">{e.subTitle}</h3>
+                  <h3 className="post-subtitle">{e.subTitle} . . .</h3>
                 </Link>
                 <div className="post-meta">
                   <p>
@@ -158,7 +151,7 @@ export default function CategoriesList() {
   }
 
   return (
-    <div className="col-md-10 col-lg-8 col-xl-7" style={listWraper}>
+    <div className="col-md-10 col-lg-8 col-xl-7 list-section list-section-padded">
       <div className="tag-breadcrumb">
         <span className="breadcrumb-link" onClick={handleBack}>
           Categories
@@ -170,7 +163,7 @@ export default function CategoriesList() {
       <div>
         {categories &&
           categories.map((e) => (
-            <div key={e.cateNo} style={{ marginBottom: '0.5rem' }}>
+            <div key={e.cateNo} className="category-item">
               {e.categories && e.categories.length > 0 ? (
                 <span
                   className="tag"
@@ -178,28 +171,25 @@ export default function CategoriesList() {
                     toggleExpand(e.cateNo);
                     handleCategoryClick(e);
                   }}
-                  style={{ cursor: 'pointer' }}
-                >
+                                  >
                   <FontAwesomeIcon icon={faFolder} /> {e.cateNm} {expanded.has(e.cateNo) ? '▾' : '▸'}
                 </span>
               ) : (
                 <span
                   className="tag"
                   onClick={() => handleCategoryClick(e)}
-                  style={{ cursor: 'pointer' }}
-                >
+                                  >
                   <FontAwesomeIcon icon={faFolder} /> {e.cateNm}
                 </span>
               )}
               {expanded.has(e.cateNo) && e.categories && (
-                <div style={{ paddingLeft: '1.5rem', marginTop: '0.4rem', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                <div className="sub-categories">
                   {e.categories.map((sub: any) => (
                     <span
                       key={sub.cateNo}
                       className="tag"
                       onClick={() => handleCategoryClick(sub)}
-                      style={{ cursor: 'pointer' }}
-                    >
+                                          >
                       └ {sub.cateNm}
                     </span>
                   ))}

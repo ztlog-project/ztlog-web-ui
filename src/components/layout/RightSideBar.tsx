@@ -17,7 +17,7 @@ export default function RightSideBar() {
   }, []);
 
   return (
-    <aside className="sidebar col-lg-2 col-xl-2 d-none d-lg-block">
+    <aside className="sidebar col-lg-2 col-xl-2 d-none d-lg-block" style={{ paddingRight: '0px' }}>
       <div style={{ borderLeft: '1.5px solid var(--bs-gray-400)', paddingLeft: '0.75rem' }}>
         <div style={{ marginBottom: '0.75rem', fontSize: '0.85rem', textAlign: 'left', fontWeight: 700, fontFamily: '"Gothic A1", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif', color: 'var(--bs-gray-600)' }}>Trending Topics</div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
@@ -27,13 +27,13 @@ export default function RightSideBar() {
             href={`/tags?tagNo=${tag.tagNo}&tagName=${encodeURIComponent(tag.tagName)}`}
             className="sidebar-tag"
             style={{
-              border: '1px solid #6c757d',
+              border: '1px solid var(--bs-gray-400)',
               borderRadius: '12px',
               padding: '2px 10px',
               fontSize: '0.75rem',
               textDecoration: 'none',
               whiteSpace: 'nowrap',
-              color: 'var(--bs-body-color)',
+              color: 'var(--bs-gray-600)',
             }}
           >
             {tag.tagName}

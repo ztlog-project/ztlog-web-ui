@@ -63,7 +63,7 @@ export default function SearchResults() {
           <div key={e.ctntNo} className="post-preview">
             <Link href={`/contents/${e.ctntNo}`}>
               <h2 className="post-title">{e.title}</h2>
-              <h3 className="post-subtitle">{e.subTitle}</h3>
+              <h3 className="post-subtitle">{e.subTitle} . . .</h3>
             </Link>
             <div className="post-meta">
               <p>
