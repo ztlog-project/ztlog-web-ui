@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
 /*!
 * Start Bootstrap - Clean Blog v6.0.8 (https://startbootstrap.com/theme/clean-blog)
 * Copyright 2013-2022 Start Bootstrap
@@ -55,7 +62,7 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "IBM Plex Sans KR", system-ui, -apple-system,
+  --bs-font-sans-serif: "NanumSquareRound", system-ui, -apple-system,
     "Gothic A1", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
@@ -12109,7 +12116,7 @@ blockquote {
   -moz-border-radius: 4px;
 
   box-shadow: 2px 2px 5px 2px #d3d3d3;
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-weight: bold;
 }
 
@@ -12129,51 +12136,51 @@ blockquote {
 }
 
 .profile {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   /* margin: 10px 0px; */
   padding: 0px;
 }
 
 .profile > h1 {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-size: 1.5rem;
   font-weight: 400;
 }
 
 .profile > h4 {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-size: 1.125rem;
   font-weight: 400;
 }
 
 .profile > p {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-size: 0.875rem;
   margin-top: 1rem;
   margin-bottom: 0px;
 }
 
 .myInfo {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   margin: 10px 0px;
   padding: 20px 0px;
   font-weight: 400;
 }
 
 .myInfo > h1 {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-size: 1.5rem;
   font-weight: 400;
 }
 
 .myInfo > h4 {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-size: 1.125rem;
   font-weight: 400;
 }
 
 .myInfo > p {
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
   font-size: 0.875rem;
   margin: 5px;
 }
@@ -12248,12 +12255,11 @@ blockquote {
   }
 
   #mainNav.is-fixed {
-    /* when the user scrolls down, we hide the header right above the viewport */
-    position: fixed;
-    top: -95px;
+    position: sticky;
+    top: 0;
     transition: transform 0.2s;
-    /* border-bottom: 1px solid white; */
     background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1030;
   }
 
   #mainNav.is-fixed .navbar-brand {
@@ -12287,12 +12293,10 @@ blockquote {
 footer {
   background-color: #f2f3f3;
   height: 120px;
-  /* position: relative; */
-  transform: translateY(0%);
   display: flex;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  /* width: 100%; */
+  width: 100%;
 }
 
 .pagination {
@@ -12481,6 +12485,14 @@ header.masthead .post-heading .meta a {
   margin: 0 6px;
 } */
 
+.post-preview {
+  border: 1px solid var(--bs-gray-200);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
 .post-preview > a {
   color: #212529;
 }
@@ -12499,24 +12511,24 @@ header.masthead .post-heading .meta a {
 }
 
 .post-preview > a > .post-title {
-  font-size: 2rem;
-  margin-top: 1.875rem;
-  margin-bottom: 0.625rem;
-  font-family: "IBM Plex Sans KR";
+  font-size: 1.6rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-family: "NanumSquareRound";
 }
 
 .post-preview > a > .post-subtitle {
   font-size: 1rem;
   font-weight: 400;
   margin: 0.625rem 0px;
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
 }
 
 .post-preview > .post-meta {
   font-size: 0.8rem;
-  margin-top: 0;
+  margin-top: 0.5rem;
   color: #6c757d;
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
 }
 
 .post-preview > .post-meta > a {
@@ -12542,7 +12554,7 @@ header.masthead .post-heading .meta a {
 
 @media (min-width: 992px) {
   .post-preview > a > .post-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -12898,7 +12910,7 @@ header.masthead .post-heading .meta a {
 .article {
   margin-top: 1.875rem;
   margin-bottom: 1.625rem;
-  font-family: "IBM Plex Sans KR";
+  font-family: "NanumSquareRound";
 }
 
 [data-tooltip-text]:hover {
@@ -12989,6 +13001,17 @@ header.masthead .post-heading .meta a {
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus,
+.theme-toggle:active {
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  font-size: inherit !important;
 }
 
 

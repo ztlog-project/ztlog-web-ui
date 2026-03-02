@@ -5,17 +5,30 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faEnvelope, faFolder, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 export default function SideBar() {
   const [categories, setCategories] = useState<any[]>([]);
+  const [expanded, setExpanded] = useState<Set<number>>(new Set());
+  const router = useRouter();
+
+  const toggleExpand = (cateNo: number) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      next.has(cateNo) ? next.delete(cateNo) : next.add(cateNo);
+      return next;
+    });
+  };
 
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_BE_API_URL}/categories`)
       .then((response) => {
-        setCategories(response.data.data || []);
+        const data: any[] = response.data.data || [];
+        const unique = data.filter((c, i, arr) => arr.findIndex((x) => x.cateNo === c.cateNo) === i);
+        setCategories(unique);
       })
       .catch(() => {});
   }, []);
@@ -92,16 +105,35 @@ export default function SideBar() {
                 <span> HOME</span>
               </Link>
             </li>
-            {categories.map((cate) => (
-              <li key={cate.cateNo}>
-                <Link
-                  href={`/categories?cateNo=${cate.cateNo}&cateName=${encodeURIComponent(cate.cateNm)}`}
-                  className=""
-                >
-                  <FontAwesomeIcon icon={faFolder} />
-                  <span> {cate.cateNm}</span>
-                </Link>
-              </li>
+            {categories.map((cate, idx) => (
+              <React.Fragment key={`${cate.cateNo}-${idx}`}>
+                <li>
+                  {cate.categories && cate.categories.length > 0 ? (
+                    <span
+                      onClick={() => {
+                        toggleExpand(cate.cateNo);
+                        router.push(`/categories?cateNo=${cate.cateNo}&cateName=${encodeURIComponent(cate.cateNm)}`);
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <FontAwesomeIcon icon={faFolder} />
+                      <span> {cate.cateNm} {expanded.has(cate.cateNo) ? '▾' : '▸'}</span>
+                    </span>
+                  ) : (
+                    <Link href={`/categories?cateNo=${cate.cateNo}&cateName=${encodeURIComponent(cate.cateNm)}`}>
+                      <FontAwesomeIcon icon={faFolder} />
+                      <span> {cate.cateNm}</span>
+                    </Link>
+                  )}
+                </li>
+                {expanded.has(cate.cateNo) && cate.categories && cate.categories.map((sub: any) => (
+                  <li key={sub.cateNo} style={{ paddingLeft: '1.2rem' }}>
+                    <Link href={`/categories?cateNo=${sub.cateNo}&cateName=${encodeURIComponent(sub.cateNm)}`}>
+                      <span>└ {sub.cateNm}</span>
+                    </Link>
+                  </li>
+                ))}
+              </React.Fragment>
             ))}
           </ul>
         </div>

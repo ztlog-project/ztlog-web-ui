@@ -14,7 +14,7 @@ import dayjs from 'dayjs';
 export default function TagList() {
   const listWraper = {
     padding: '50px',
-    height: '850px',
+    minHeight: '600px',
   };
 
   const [tags, setTags] = useState<any[]>([]);
@@ -121,7 +121,6 @@ export default function TagList() {
                     {dayjs(e.inpDttm).format('YYYY년 M월 D일 h시 m분')}
                   </p>
                 </div>
-                <hr className="my-4" />
               </div>
             ))
           ) : (

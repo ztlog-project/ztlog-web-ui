@@ -14,10 +14,19 @@ import dayjs from 'dayjs';
 export default function CategoriesList() {
   const listWraper = {
     padding: '50px',
-    height: '850px',
+    minHeight: '600px',
   };
 
   const [categories, setCategories] = useState<any[]>([]);
+  const [expanded, setExpanded] = useState<Set<number>>(new Set());
+
+  const toggleExpand = (cateNo: number) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      next.has(cateNo) ? next.delete(cateNo) : next.add(cateNo);
+      return next;
+    });
+  };
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
   const [ctnt, setCtnt] = useState<any[]>([]);
   const [page, setPage] = useState(1);
@@ -31,7 +40,9 @@ export default function CategoriesList() {
     axios
       .get(`${process.env.NEXT_PUBLIC_BE_API_URL}/categories`)
       .then((response) => {
-        setCategories(response.data.data);
+        const data: any[] = response.data.data || [];
+        const unique = data.filter((c, i, arr) => arr.findIndex((x) => x.cateNo === c.cateNo) === i);
+        setCategories(unique);
 
         const cateNo = searchParams?.get('cateNo');
         const cateName = searchParams?.get('cateName');
@@ -121,7 +132,6 @@ export default function CategoriesList() {
                     {dayjs(e.inpDttm).format('YYYY년 M월 D일 h시 m분')}
                   </p>
                 </div>
-                <hr className="my-4" />
               </div>
             ))
           ) : (
@@ -155,17 +165,45 @@ export default function CategoriesList() {
         <span className="breadcrumb-current">All</span>
       </div>
       <hr className="my-4" />
-      <div className="post-meta">
+      <div>
         {categories &&
           categories.map((e) => (
-            <span
-              key={e.cateNo}
-              className="tag"
-              onClick={() => handleCategoryClick(e)}
-              style={{ cursor: 'pointer' }}
-            >
-              <FontAwesomeIcon icon={faFolder} /> {e.cateNm}
-            </span>
+            <div key={e.cateNo} style={{ marginBottom: '0.5rem' }}>
+              {e.categories && e.categories.length > 0 ? (
+                <span
+                  className="tag"
+                  onClick={() => {
+                    toggleExpand(e.cateNo);
+                    handleCategoryClick(e);
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <FontAwesomeIcon icon={faFolder} /> {e.cateNm} {expanded.has(e.cateNo) ? '▾' : '▸'}
+                </span>
+              ) : (
+                <span
+                  className="tag"
+                  onClick={() => handleCategoryClick(e)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <FontAwesomeIcon icon={faFolder} /> {e.cateNm}
+                </span>
+              )}
+              {expanded.has(e.cateNo) && e.categories && (
+                <div style={{ paddingLeft: '1.5rem', marginTop: '0.4rem', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {e.categories.map((sub: any) => (
+                    <span
+                      key={sub.cateNo}
+                      className="tag"
+                      onClick={() => handleCategoryClick(sub)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      └ {sub.cateNm}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
       </div>
     </div>

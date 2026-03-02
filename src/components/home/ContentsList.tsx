@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
+import { faTags, faFolder } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -14,11 +14,13 @@ import dayjs from 'dayjs';
 
 export default function ContentsList() {
   const listWraper = {
-    height: '1050px',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    minHeight: 'calc(100vh - 210px)',
   };
 
   const prevewWraper = {
-    height: '963.8px',
+    flex: 1,
   };
 
   const router = useRouter();
@@ -66,27 +68,42 @@ export default function ContentsList() {
               </Link>
               <div className="post-meta">
                 <p>
-                  <FontAwesomeIcon icon={faTags} />{' '}
-                  {e.tags.map(function (tag: any, idx: number) {
-                    return (
-                      <span key={tag.tagNo}>
-                        <Link
-                          href={`/tags?tagNo=${tag.tagNo}&tagName=${tag.tagName}`}
-                          className="tag-link"
-                        >
-                          {tag.tagName}
-                        </Link>
-                        {idx < e.tags.length - 1 && ', '}
-                      </span>
-                    );
-                  })}
+                  {e.category?.cateNm && (
+                    <>
+                      <FontAwesomeIcon icon={faFolder} />{' '}
+                      <Link
+                        href={`/categories?cateNo=${e.category.cateNo}&cateName=${encodeURIComponent(e.category.cateNm)}`}
+                        className="tag-link"
+                      >
+                        {e.category.cateNm}
+                      </Link>
+                      <span style={{ marginRight: '0.75rem' }} />
+                    </>
+                  )}
+                  {e.tags && e.tags.length > 0 && (
+                    <>
+                      <FontAwesomeIcon icon={faTags} />{' '}
+                      {e.tags.map(function (tag: any, idx: number) {
+                        return (
+                          <span key={tag.tagNo}>
+                            <Link
+                              href={`/tags?tagNo=${tag.tagNo}&tagName=${tag.tagName}`}
+                              className="tag-link"
+                            >
+                              {tag.tagName}
+                            </Link>
+                            {idx < e.tags.length - 1 && ', '}
+                          </span>
+                        );
+                      })}
+                    </>
+                  )}
                 </p>
                 <p>
                   <FontAwesomeIcon icon={faCalendarDays} />{' '}
                   {dayjs(e.inpDttm).format('YYYY년 M월 D일 h시 m분')}
                 </p>
               </div>
-              <hr className="my-4" />
             </div>
           ))
         ) : (

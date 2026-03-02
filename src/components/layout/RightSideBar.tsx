@@ -18,7 +18,9 @@ export default function RightSideBar() {
 
   return (
     <aside className="sidebar col-lg-2 col-xl-2 d-none d-lg-block">
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+      <div style={{ borderLeft: '1.5px solid var(--bs-gray-400)', paddingLeft: '0.75rem' }}>
+        <div style={{ marginBottom: '0.75rem', fontSize: '0.85rem', textAlign: 'left', fontWeight: 700, fontFamily: '"Gothic A1", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif', color: 'var(--bs-gray-600)' }}>Trending Topics</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
         {tags.map((tag) => (
           <Link
             key={tag.tagNo}
@@ -37,6 +39,7 @@ export default function RightSideBar() {
             {tag.tagName}
           </Link>
         ))}
+        </div>
       </div>
     </aside>
   );
