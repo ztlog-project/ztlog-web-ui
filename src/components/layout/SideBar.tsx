@@ -3,10 +3,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faEnvelope, faFolder, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function SideBar() {
+  const [categories, setCategories] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BE_API_URL}/categories`)
+      .then((response) => {
+        setCategories(response.data.data || []);
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <aside className="sidebar col-lg-2 col-xl-2">
       <div className="author_profile">
@@ -70,6 +83,7 @@ export default function SideBar() {
         </ul>
       </div>
       {categories.length > 0 && (
+        <div className="author__urls-wrapper" style={{ marginTop: '1.5rem' }}>
         <div className="author__urls-wrapper" style={{ marginTop: '1rem' }}>
           <hr />
           <ul className="author__urls social-icons">
