@@ -69,6 +69,30 @@ export default function SideBar() {
           </li>
         </ul>
       </div>
+      {categories.length > 0 && (
+        <div className="author__urls-wrapper" style={{ marginTop: '1rem' }}>
+          <hr />
+          <ul className="author__urls social-icons">
+            <li>
+              <Link href="/">
+                <FontAwesomeIcon icon={faHouse} />
+                <span> HOME</span>
+              </Link>
+            </li>
+            {categories.map((cate) => (
+              <li key={cate.cateNo}>
+                <Link
+                  href={`/categories?cateNo=${cate.cateNo}&cateName=${encodeURIComponent(cate.cateNm)}`}
+                  className=""
+                >
+                  <FontAwesomeIcon icon={faFolder} />
+                  <span> {cate.cateNm}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </aside>
   );
 }
