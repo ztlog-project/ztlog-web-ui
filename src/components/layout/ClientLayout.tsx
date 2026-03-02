@@ -12,7 +12,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <div className="layout-wrap">
       <Header />
       <div className="wrapper container px-3 px-lg-3 main-section">
-        <div className="row gx-4 gx-lg-5 justify-content-center">
+        <div className="row gx-4 gx-lg-5 justify-content-center" style={{ flex: 1 }}>
           <SideBar />
           {children}
           <RightSideBar />

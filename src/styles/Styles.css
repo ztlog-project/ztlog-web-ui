@@ -20,6 +20,8 @@
  * 0085A1
  */
 :root {
+  --header-height: 90px;
+  --footer-height: 120px;
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -710,6 +712,8 @@ progress {
 
 .wrapper {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .content-wrapper {

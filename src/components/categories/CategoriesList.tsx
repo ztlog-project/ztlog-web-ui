@@ -14,7 +14,9 @@ import dayjs from 'dayjs';
 export default function CategoriesList() {
   const listWraper = {
     padding: '50px',
-    minHeight: '600px',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    minHeight: 'calc(100vh - var(--header-height) - var(--footer-height))',
   };
 
   const [categories, setCategories] = useState<any[]>([]);
@@ -98,7 +100,7 @@ export default function CategoriesList() {
           <span className="breadcrumb-count">{total}</span>
         </div>
         <hr className="my-4" />
-        <div>
+        <div style={{ flex: 1 }}>
           {loading ? (
             <div className="spinner-wrap">
               <div className="spinner" />

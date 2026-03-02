@@ -16,7 +16,7 @@ export default function ContentsList() {
   const listWraper = {
     display: 'flex',
     flexDirection: 'column' as const,
-    minHeight: 'calc(100vh - 210px)',
+    minHeight: 'calc(100vh - var(--header-height) - var(--footer-height))',
   };
 
   const prevewWraper = {
