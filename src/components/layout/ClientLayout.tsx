@@ -15,7 +15,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         <div className="row gx-4 gx-lg-5 justify-content-center">
           <SideBar />
           {children}
-          <div className="col-lg-2 col-xl-2 d-none d-lg-block" />
+          <RightSideBar />
         </div>
       </div>
       <Footer />

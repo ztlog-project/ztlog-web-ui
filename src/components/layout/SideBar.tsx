@@ -83,7 +83,6 @@ export default function SideBar() {
         </ul>
       </div>
       {categories.length > 0 && (
-        <div className="author__urls-wrapper" style={{ marginTop: '1.5rem' }}>
         <div className="author__urls-wrapper" style={{ marginTop: '1rem' }}>
           <hr />
           <ul className="author__urls social-icons">
