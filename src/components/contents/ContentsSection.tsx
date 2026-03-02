@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
+import { faTags, faFolder } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -24,6 +24,7 @@ export default function ContentsSection() {
     body: '',
     inpDttm: '',
     tags: [] as any[],
+    category: null as any,
   });
 
   useEffect(() => {
@@ -52,22 +53,35 @@ export default function ContentsSection() {
           <br />
         </div>
         <div className="post-footer">
-          <p className="meta">
-            <FontAwesomeIcon icon={faTags} />{' '}
-            {post.tags.map(function (el: any, idx: number) {
-              return (
-                <span key={el.tagNo}>
-                  <Link
-                    href={`/tags?tagNo=${el.tagNo}&tagName=${el.tagName}`}
-                    className="tag-link"
-                  >
-                    {el.tagName}
-                  </Link>
-                  {idx < post.tags.length - 1 && ', '}
-                </span>
-              );
-            })}
-          </p>
+          {post.category?.cateNm && (
+            <p className="meta">
+              <FontAwesomeIcon icon={faFolder} />{' '}
+              <Link
+                href={`/categories?cateNo=${post.category.cateNo}&cateName=${encodeURIComponent(post.category.cateNm)}`}
+                className="tag-link"
+              >
+                {post.category.cateNm}
+              </Link>
+            </p>
+          )}
+          {post.tags && post.tags.length > 0 && (
+            <p className="meta">
+              <FontAwesomeIcon icon={faTags} />{' '}
+              {post.tags.map(function (el: any, idx: number) {
+                return (
+                  <span key={el.tagNo}>
+                    <Link
+                      href={`/tags?tagNo=${el.tagNo}&tagName=${el.tagName}`}
+                      className="tag-link"
+                    >
+                      {el.tagName}
+                    </Link>
+                    {idx < post.tags.length - 1 && ', '}
+                  </span>
+                );
+              })}
+            </p>
+          )}
           <p className="meta">
             <FontAwesomeIcon icon={faCalendarDays} />{' '}
             {dayjs(post.inpDttm).format('YYYY년 M월 D일 h시 m분')}
