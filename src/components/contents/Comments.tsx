@@ -9,11 +9,11 @@ export default function Comments() {
   return (
     <Giscus
       id="comments"
-      repo="zoetrope56/devlog-comments"
-      repoId="R_kgDOKnxXWg"
+      repo="ztlog-project/ztlog-comment"
+      repoId="R_kgDOLNvWbw"
       category="General"
-      categoryId="DIC_kwDOKnxXWs4Camnw"
-      mapping="url"
+      categoryId="DIC_kwDOLNvWb84C3pDU"
+      mapping="title"
       strict="0"
       reactionsEnabled="1"
       emitMetadata="0"
