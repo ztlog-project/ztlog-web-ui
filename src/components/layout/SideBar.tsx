@@ -34,7 +34,7 @@ export default function SideBar() {
   }, []);
 
   return (
-    <aside className="sidebar col-lg-2 col-xl-2">
+    <aside className="sidebar col-lg-2 col-xl-2 d-none d-lg-block">
       <div className="author_profile">
         <div className="author__avatar">
           <Image src="/images/profile.png" alt="profile" width={120} height={120} />
