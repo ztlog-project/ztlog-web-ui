@@ -81,6 +81,11 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link href="/categories" className="nav-link px-lg-3 py-3 py-lg-4">
+                  Categories
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link href="/tags" className="nav-link px-lg-3 py-3 py-lg-4">
                   Tags
                 </Link>
