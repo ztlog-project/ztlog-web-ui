@@ -747,6 +747,80 @@ progress {
   gap: 6px;
 }
 
+/* Category file-tree styles */
+.cate-tree {
+  font-size: 0.95rem;
+}
+
+.cate-tree-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--bs-gray-200);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  gap: 1rem;
+}
+
+.cate-tree-row:hover {
+  background-color: var(--bs-gray-100);
+}
+
+.cate-tree-row--sub {
+  padding-left: 1.75rem;
+}
+
+.cate-tree-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.cate-tree-connector {
+  color: var(--bs-gray-500);
+  font-size: 0.85rem;
+  line-height: 1;
+  margin-right: 0.15rem;
+  flex-shrink: 0;
+}
+
+.cate-tree-icon {
+  color: #56c0e0;
+  flex-shrink: 0;
+}
+
+.cate-tree-icon--sub {
+  color: #56c0e0cc;
+}
+
+.cate-tree-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cate-tree-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  color: var(--bs-gray-500);
+  font-size: 0.85rem;
+}
+
+.cate-tree-count {
+  min-width: 2rem;
+  text-align: right;
+}
+
+.cate-tree-date {
+  min-width: 6rem;
+  text-align: right;
+}
+
 .container,
 .container-fluid,
 .container-xxl,

@@ -5,7 +5,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags, faFolder } from '@fortawesome/free-solid-svg-icons';
-
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import dynamic from 'next/dynamic';
 const Pagination = dynamic(() => import('react-js-pagination'), { ssr: false });
@@ -14,15 +13,6 @@ import dayjs from 'dayjs';
 
 export default function CategoriesList() {
   const [categories, setCategories] = useState<any[]>([]);
-  const [expanded, setExpanded] = useState<Set<number>>(new Set());
-
-  const toggleExpand = (cateNo: number) => {
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      next.has(cateNo) ? next.delete(cateNo) : next.add(cateNo);
-      return next;
-    });
-  };
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
   const [ctnt, setCtnt] = useState<any[]>([]);
   const [page, setPage] = useState(1);
@@ -141,7 +131,7 @@ export default function CategoriesList() {
                   </p>
                   <p>
                     <FontAwesomeIcon icon={faCalendarDays} />{' '}
-                    {dayjs(e.inpDttm).format('YYYY년 M월 D일 h시 m분')}
+                    {dayjs(e.updDttm).format('YYYY년 M월 D일 h시 m분')}
                   </p>
                 </div>
               </div>
@@ -177,43 +167,54 @@ export default function CategoriesList() {
         <span className="breadcrumb-current">All</span>
       </div>
       <hr className="my-4" />
-      <div>
-        {categories &&
-          categories.map((e) => (
-            <div key={e.cateNo} className="category-item">
-              {e.categories && e.categories.length > 0 ? (
-                <span
-                  className="tag"
-                  onClick={() => {
-                    toggleExpand(e.cateNo);
-                    handleCategoryClick(e);
-                  }}
-                                  >
-                  <FontAwesomeIcon icon={faFolder} /> {e.cateNm} {expanded.has(e.cateNo) ? '▾' : '▸'}
-                </span>
-              ) : (
-                <span
-                  className="tag"
-                  onClick={() => handleCategoryClick(e)}
-                                  >
-                  <FontAwesomeIcon icon={faFolder} /> {e.cateNm}
-                </span>
-              )}
-              {expanded.has(e.cateNo) && e.categories && (
-                <div className="sub-categories">
-                  {e.categories.map((sub: any) => (
-                    <span
-                      key={sub.cateNo}
-                      className="tag"
-                      onClick={() => handleCategoryClick(sub)}
-                                          >
-                      └ {sub.cateNm}
-                    </span>
-                  ))}
-                </div>
-              )}
+      <div className="cate-tree">
+        {categories.map((e) => (
+          <div key={e.cateNo}>
+            <div className="cate-tree-row" onClick={() => handleCategoryClick(e)}>
+              <span className="cate-tree-left">
+                <FontAwesomeIcon icon={faFolder} className="cate-tree-icon" />
+                <span className="cate-tree-name">{e.cateNm}</span>
+              </span>
+              <span className="cate-tree-right">
+                {e.ctntCount !== undefined && (
+                  <span className="cate-tree-count">({e.ctntCount})</span>
+                )}
+                {e.updDttm && (
+                  <span className="cate-tree-date">
+                    {dayjs(e.updDttm).format('YYYY. M. D.')}
+                  </span>
+                )}
+              </span>
             </div>
-          ))}
+            {e.categories && e.categories.length > 0 &&
+              e.categories.map((sub: any, subIdx: number) => (
+                <div
+                  key={sub.cateNo}
+                  className="cate-tree-row cate-tree-row--sub"
+                  onClick={() => handleCategoryClick(sub)}
+                >
+                  <span className="cate-tree-left">
+                    <span className="cate-tree-connector">
+                      {subIdx === e.categories.length - 1 ? '└' : '├'}
+                    </span>
+                    <FontAwesomeIcon icon={faFolder} className="cate-tree-icon cate-tree-icon--sub" />
+                    <span className="cate-tree-name">{sub.cateNm}</span>
+                  </span>
+                  <span className="cate-tree-right">
+                    {sub.ctntCount !== undefined && (
+                      <span className="cate-tree-count">({sub.ctntCount})</span>
+                    )}
+                    {sub.updDttm && (
+                      <span className="cate-tree-date">
+                        {dayjs(sub.updDttm).format('YYYY. M. D.')}
+                      </span>
+                    )}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        ))}
       </div>
     </div>
   );
