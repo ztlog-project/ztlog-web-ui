@@ -174,11 +174,11 @@ export default function CategoriesList() {
               <span className="cate-tree-left">
                 <FontAwesomeIcon icon={faFolder} className="cate-tree-icon" />
                 <span className="cate-tree-name">{e.cateNm}</span>
-              </span>
-              <span className="cate-tree-right">
                 {e.ctntCount !== undefined && (
                   <span className="cate-tree-count">({e.ctntCount})</span>
                 )}
+              </span>
+              <span className="cate-tree-right">
                 {e.updDttm && (
                   <span className="cate-tree-date">
                     {dayjs(e.updDttm).format('YYYY. M. D.')}
@@ -199,11 +199,11 @@ export default function CategoriesList() {
                     </span>
                     <FontAwesomeIcon icon={faFolder} className="cate-tree-icon cate-tree-icon--sub" />
                     <span className="cate-tree-name">{sub.cateNm}</span>
-                  </span>
-                  <span className="cate-tree-right">
                     {sub.ctntCount !== undefined && (
                       <span className="cate-tree-count">({sub.ctntCount})</span>
                     )}
+                  </span>
+                  <span className="cate-tree-right">
                     {sub.updDttm && (
                       <span className="cate-tree-date">
                         {dayjs(sub.updDttm).format('YYYY. M. D.')}

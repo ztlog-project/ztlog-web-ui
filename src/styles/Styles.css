@@ -812,13 +812,14 @@ progress {
 }
 
 .cate-tree-count {
-  min-width: 2rem;
+  /* min-width: 2rem; */
+  color: var(--bs-gray-500);
   text-align: right;
 }
 
 .cate-tree-date {
   min-width: 6rem;
-  text-align: right;
+  /* text-align: right; */
 }
 
 .container,
