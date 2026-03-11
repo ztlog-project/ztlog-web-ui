@@ -260,6 +260,14 @@ html[data-theme="dark"] .tag-breadcrumb {
   color: var(--bs-body-color);
 }
 
+html[data-theme="dark"] .cate-tree-row {
+  border-bottom-color: var(--bs-gray-700);
+}
+
+html[data-theme="dark"] .cate-tree-row:hover {
+  background-color: var(--bs-gray-800);
+}
+
 html[data-theme="dark"] .breadcrumb-link {
   color: #dfe8f1;
   cursor: pointer;
