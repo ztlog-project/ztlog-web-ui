@@ -321,6 +321,21 @@ html[data-theme="dark"] .post-footer .meta a:hover {
   color: #dfe8f1;
 }
 
+html[data-theme="dark"] .share-btn {
+  border-color: var(--bs-gray-600);
+  color: var(--bs-gray-600);
+}
+
+html[data-theme="dark"] .share-btn:hover {
+  border-color: #dfe8f1;
+  color: #dfe8f1;
+}
+
+html[data-theme="dark"] .share-btn--copied {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
 /* Markdown Preview dark mode */
 html[data-theme="dark"] .wmde-markdown {
   background-color: var(--bs-body-bg) !important;
