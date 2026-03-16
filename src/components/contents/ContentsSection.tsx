@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags, faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faTags, faFolder, faLink, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -17,6 +17,15 @@ export default function ContentsSection() {
   const { theme } = useTheme();
   const params = useParams();
   const id = params?.id as string;
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   const [post, setPost] = useState({
     ctntNo: 0,
@@ -52,40 +61,49 @@ export default function ContentsSection() {
           <MarkdownPreview source={post.body} wrapperElement={{ 'data-color-mode': theme }} />
           <br />
         </div>
-        <div className="post-footer">
-          {post.category?.cateNm && (
+        <div className="post-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <div>
+            {post.category?.cateNm && (
+              <p className="meta">
+                <FontAwesomeIcon icon={faFolder} />{' '}
+                <Link
+                  href={`/categories?cateNo=${post.category.cateNo}&cateName=${encodeURIComponent(post.category.cateNm)}`}
+                  className="tag-link"
+                >
+                  {post.category.cateNm}
+                </Link>
+              </p>
+            )}
+            {post.tags && post.tags.length > 0 && (
+              <p className="meta">
+                <FontAwesomeIcon icon={faTags} />{' '}
+                {post.tags.map(function (el: any, idx: number) {
+                  return (
+                    <span key={el.tagNo}>
+                      <Link
+                        href={`/tags?tagNo=${el.tagNo}&tagName=${el.tagName}`}
+                        className="tag-link"
+                      >
+                        {el.tagName}
+                      </Link>
+                      {idx < post.tags.length - 1 && ', '}
+                    </span>
+                  );
+                })}
+              </p>
+            )}
             <p className="meta">
-              <FontAwesomeIcon icon={faFolder} />{' '}
-              <Link
-                href={`/categories?cateNo=${post.category.cateNo}&cateName=${encodeURIComponent(post.category.cateNm)}`}
-                className="tag-link"
-              >
-                {post.category.cateNm}
-              </Link>
+              <FontAwesomeIcon icon={faCalendarDays} />{' '}
+              {dayjs(post.inpDttm).format('YYYY년 M월 D일 h시 m분')}
             </p>
-          )}
-          {post.tags && post.tags.length > 0 && (
-            <p className="meta">
-              <FontAwesomeIcon icon={faTags} />{' '}
-              {post.tags.map(function (el: any, idx: number) {
-                return (
-                  <span key={el.tagNo}>
-                    <Link
-                      href={`/tags?tagNo=${el.tagNo}&tagName=${el.tagName}`}
-                      className="tag-link"
-                    >
-                      {el.tagName}
-                    </Link>
-                    {idx < post.tags.length - 1 && ', '}
-                  </span>
-                );
-              })}
-            </p>
-          )}
-          <p className="meta">
-            <FontAwesomeIcon icon={faCalendarDays} />{' '}
-            {dayjs(post.inpDttm).format('YYYY년 M월 D일 h시 m분')}
-          </p>
+          </div>
+          <button
+            onClick={handleCopyLink}
+            className={`share-btn${copied ? ' share-btn--copied' : ''}`}
+            title={copied ? '복사됨!' : '링크 공유'}
+          >
+            <FontAwesomeIcon icon={copied ? faCheck : faLink} />
+          </button>
         </div>
         <hr className="my-4" />
         <div className="giscus">

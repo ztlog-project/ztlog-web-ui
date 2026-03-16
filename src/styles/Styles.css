@@ -12594,7 +12594,7 @@ header.masthead .post-heading .meta a {
   /* text-align: center; */
 }
 
-.post-footer > p {
+.post-footer p {
   margin: 10px 0px;
   font-size: 14px;
   color: #808080;
@@ -12603,6 +12603,31 @@ header.masthead .post-heading .meta a {
   color: #696969;
   margin: 0 6px;
 } */
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #c0c0c0;
+  background: none;
+  color: #808080;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.share-btn:hover {
+  border-color: #555;
+  color: #555;
+}
+
+.share-btn--copied {
+  border-color: #4caf50;
+  color: #4caf50;
+}
 
 .post-preview {
   border: 1px solid var(--bs-gray-200);
